@@ -129,6 +129,12 @@
           go-tools
           gccgo
         ];
+        rust = with pkgs; [
+          rust-analyzer
+          rustc
+          cargo
+          clippy
+        ];
         # and easily check if they are included in lua
         format = with pkgs; [
         ];
@@ -237,7 +243,6 @@
           ];
           always = with pkgs.vimPlugins; [
             nvim-lspconfig
-            lualine-nvim
             gitsigns-nvim
             vim-sleuth
             vim-fugitive

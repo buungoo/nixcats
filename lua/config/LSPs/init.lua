@@ -34,7 +34,7 @@ require('lze').load {
     end,
     before = function(_)
       vim.lsp.config('*', {
-        on_attach = require('myLuaConf.LSPs.on_attach'),
+        on_attach = require('config.LSPs.on_attach'),
       })
     end,
   },
@@ -99,6 +99,22 @@ require('lze').load {
     -- if you don't provide the filetypes it asks lspconfig for them
     lsp = {
       filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    },
+  },
+  {
+    "rust_analyzer",
+    for_cat = "rust",
+    lsp = {
+      settings = {
+        ['rust-analyzer'] = {
+          cargo = {
+            allFeatures = true,
+          },
+          checkOnSave = {
+            command = "clippy",
+          },
+        },
+      },
     },
   },
   {

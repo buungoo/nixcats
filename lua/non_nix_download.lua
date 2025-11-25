@@ -73,7 +73,6 @@ require('nixCatsUtils.catPacker').setup({
   { 'tpope/vim-sleuth', opt = true, },
   { 'folke/which-key.nvim', opt = true, },
   { 'lewis6991/gitsigns.nvim', opt = true, },
-  { 'nvim-lualine/lualine.nvim', opt = true, },
   { 'lukas-reineke/indent-blankline.nvim', opt = true, },
   { 'numToStr/Comment.nvim', opt = true, as = "comment.nvim", },
   { 'kylechui/nvim-surround', opt = true, },
