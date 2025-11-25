@@ -1,6 +1,6 @@
--- nvim-window-picker: Quick window navigation using letter hints
+-- nvim-window: Quick window navigation using letter hints
 return {
-  "nvim-window-picker",
+  "nvim-window",
   for_cat = 'general.extra',
   keys = {
     {

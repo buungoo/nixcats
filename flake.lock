@@ -31,10 +31,27 @@
         "type": "github"
       }
     },
+    "plugins-nvim-window": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648064093,
+        "narHash": "sha256-3nP/Dxl20g3Q1ojWTUxTE2NUrPq734HsxnzWhH2zttg=",
+        "owner": "yorickpeterse",
+        "repo": "nvim-window",
+        "rev": "dd0a6b230003ef35524853d71e5413f88fd2ba74",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "yorickpeterse",
+        "repo": "nvim-window",
+        "type": "gitlab"
+      }
+    },
     "root": {
       "inputs": {
         "nixCats": "nixCats",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "plugins-nvim-window": "plugins-nvim-window"
       }
     }
   },

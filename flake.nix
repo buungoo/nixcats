@@ -44,6 +44,11 @@
     #   flake = false;
     # };
 
+    plugins-nvim-window = {
+      url = "gitlab:yorickpeterse/nvim-window";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -152,10 +157,11 @@
           extra = [
             oil-nvim
             nvim-web-devicons
-            nvim-window-picker
             kanagawa-nvim
             hlchunk-nvim
-          ];
+          ] ++ (with pkgs.neovimPlugins; [
+            nvim-window
+          ]);
         };
         # You can retreive information from the
         # packageDefinitions of the package this was packaged with.
@@ -380,7 +386,7 @@
           # you could also pass something else:
           # see :help nixCats
           themer = true;
-          colorscheme = "onedark";
+          colorscheme = "kanagawa-wave";
         };
         extra = {
           # to keep the categories table from being filled with non category things that you want to pass

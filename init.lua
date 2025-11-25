@@ -34,8 +34,9 @@ and you should keep any setup functions
 OUT of that file, as they are ONLY loaded when this
 configuration is NOT loaded via nix.
 --]]
-require("config.non_nix_download")
+-- require("non_nix_download")
 -- OK, again, that isnt needed if you load this setup via nix, but it is an option.
+-- Uncomment the line above if you need to load this config without nix.
 
 --[[
 outside of when you want to use the nixCats global command
