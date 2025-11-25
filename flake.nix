@@ -377,6 +377,7 @@
           lint = true;
           format = true;
           neonixdev = true;
+          rust = true;
           test = {
             subtest1 = true;
           };
@@ -385,7 +386,7 @@
           # and ALSO debug.go and debug.default due to our extraCats in categoryDefinitions.
           # go = true; # <- disabled but you could enable it with override or module on install
 
-          # this does not have an associated category of plugins, 
+          # this does not have an associated category of plugins,
           # but lua can still check for it
           lspDebugMode = false;
           # you could also pass something else:

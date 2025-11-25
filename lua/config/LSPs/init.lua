@@ -111,7 +111,7 @@ require('lze').load {
           cargo = {
             allFeatures = true,
           },
-          checkOnSave = {
+          check = {
             command = "clippy",
           },
         },
