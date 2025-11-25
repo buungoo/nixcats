@@ -45,6 +45,8 @@ return {
     { "<leader>sh", function() require('snacks').picker.help() end, mode = {"n"}, desc = '[S]earch [H]elp', },
   },
   after = function(plugin)
+    local kanagawa_colors = require('kanagawa.colors').setup({ theme = 'wave' })
+
     require('snacks').setup({
       picker = {
         ui_select = true,
@@ -54,9 +56,18 @@ return {
         },
         layout = {
           preset = "ivy_split",
-          -- layout = "ivy_split",
+        },
+        formatters = {
+          file = {
+            filename_hl = "SnacksPickerFile",
+          },
         },
       },
     })
+
+    -- Set snacks picker match highlight to roninYellow
+    if kanagawa_colors then
+      vim.api.nvim_set_hl(0, 'SnacksPickerMatch', { fg = kanagawa_colors.palette.roninYellow, bold = true })
+    end
   end,
 }
