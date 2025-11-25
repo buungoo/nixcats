@@ -45,6 +45,7 @@ return {
     { "<leader>sh", function() require('snacks').picker.help() end, mode = {"n"}, desc = '[S]earch [H]elp', },
   },
   after = function(plugin)
+    -- TODO: Wait for kanagawa PR to merge for better search highlights
     local kanagawa_colors = require('kanagawa.colors').setup({ theme = 'wave' })
 
     require('snacks').setup({
@@ -57,9 +58,11 @@ return {
         layout = {
           preset = "ivy_split",
         },
-        formatters = {
-          file = {
-            filename_hl = "SnacksPickerFile",
+        win = {
+          input = {
+            keys = {
+              ["<Esc>"] = { "close", mode = { "n", "i" } },
+            },
           },
         },
       },

@@ -25,6 +25,9 @@ vim.opt.scrolloff = 10
 -- Make line numbers default
 vim.wo.number = true
 
+-- Highlight the current line
+vim.opt.cursorline = true
+
 -- Open help in current window instead of split
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*.txt",
