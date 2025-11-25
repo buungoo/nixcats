@@ -34,7 +34,7 @@ and you should keep any setup functions
 OUT of that file, as they are ONLY loaded when this
 configuration is NOT loaded via nix.
 --]]
-require("myLuaConf.non_nix_download")
+require("config.non_nix_download")
 -- OK, again, that isnt needed if you load this setup via nix, but it is an option.
 
 --[[
@@ -49,12 +49,38 @@ that directory is addable via the luaUtils template.
 it is not required, but has some useful utility functions.
 --]]
 
---[[
-ok thats enough for 1 file. Off to lua/myLuaConf/init.lua
-all the config starts there in this example config.
-This config is loadable with and without nix due to the above,
-and the lua/myLuaConf/non_nix_download.lua file.
-the rest is just example of how to configure nvim making use of various
-features of nixCats and using the plugin lze for lazy loading.
---]]
-require('myLuaConf')
+-- NOTE: various, non-plugin config
+require('config.opts_and_keys')
+
+-- NOTE: register an extra lze handler with the spec_field 'for_cat'
+-- that makes enabling an lze spec for a category slightly nicer
+require("lze").register_handlers(require('nixCatsUtils.lzUtils').for_cat)
+
+-- NOTE: Register another one from lzextras. This one makes it so that
+-- you can set up lsps within lze specs,
+-- and trigger lspconfig setup hooks only on the correct filetypes
+require('lze').register_handlers(require('lzextras').lsp)
+-- demonstrated in ./LSPs/init.lua
+
+-- NOTE: general plugins
+require("plugins")
+
+-- NOTE: obviously, more plugins, but more organized by what they do below
+
+require("config.LSPs")
+
+-- NOTE: we even ask nixCats if we included our debug stuff in this setup! (we didnt)
+-- But we have a good base setup here as an example anyway!
+if nixCats('debug') then
+  require('config.debug')
+end
+-- NOTE: we included these though! Or, at least, the category is enabled.
+-- these contain nvim-lint and conform setups.
+if nixCats('lint') then
+  require('config.lint')
+end
+if nixCats('format') then
+  require('config.format')
+end
+-- NOTE: I didnt actually include any linters or formatters in this configuration,
+-- but it is enough to serve as an example.

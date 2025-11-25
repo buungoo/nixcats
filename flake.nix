@@ -152,6 +152,9 @@
           extra = [
             oil-nvim
             nvim-web-devicons
+            nvim-window-picker
+            kanagawa-nvim
+            hlchunk-nvim
           ];
         };
         # You can retreive information from the
@@ -165,6 +168,8 @@
               "catppuccin-mocha" = catppuccin-nvim;
               "tokyonight" = tokyonight-nvim;
               "tokyonight-day" = tokyonight-nvim;
+              "kanagawa" = kanagawa-nvim;
+              "kanagawa-wave" = kanagawa-nvim;
             }
           );
           # This is obviously a fairly basic usecase for this, but still nice.
