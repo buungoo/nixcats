@@ -25,6 +25,16 @@ vim.opt.scrolloff = 10
 -- Make line numbers default
 vim.wo.number = true
 
+-- Open help in current window instead of split
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*.txt",
+  callback = function()
+    if vim.bo.buftype == "help" then
+      vim.cmd("only")
+    end
+  end,
+})
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -34,9 +44,19 @@ vim.opt.cpoptions:append('I')
 vim.o.expandtab = true
 -- vim.o.smartindent = true
 -- vim.o.autoindent = true
--- vim.o.tabstop = 4
--- vim.o.softtabstop = 4
--- vim.o.shiftwidth = 4
+vim.o.tabstop = 3
+vim.o.softtabstop = 3
+vim.o.shiftwidth = 3
+
+-- Language-specific indentation
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "nix", "lua" },
+  callback = function()
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.shiftwidth = 2
+  end,
+})
 
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
@@ -117,15 +137,20 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
--- kickstart.nvim starts you with this. 
--- But it constantly clobbers your system clipboard whenever you delete anything.
+-- Sync clipboard between OS and Neovim
+vim.o.clipboard = 'unnamedplus'
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
--- vim.o.clipboard = 'unnamedplus'
+-- OSC52 clipboard support for remote sessions
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    local copy_to_unnamedplus = require("vim.ui.clipboard.osc52").copy("+")
+    copy_to_unnamedplus(vim.v.event.regcontents)
+    local copy_to_unnamed = require("vim.ui.clipboard.osc52").copy("*")
+    copy_to_unnamed(vim.v.event.regcontents)
+  end,
+})
 
--- You should instead use these keybindings so that they are still easy to use, but dont conflict
+-- Additional clipboard keybindings
 vim.keymap.set({"v", "x", "n"}, '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Yank to clipboard' })
 vim.keymap.set({"n", "v", "x"}, '<leader>Y', '"+yy', { noremap = true, silent = true, desc = 'Yank line to clipboard' })
 vim.keymap.set({"n", "v", "x"}, '<C-a>', 'gg0vG$', { noremap = true, silent = true, desc = 'Select all' })

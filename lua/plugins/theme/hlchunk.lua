@@ -1,8 +1,7 @@
--- hlchunk.nvim configuration for visual chunk/indent guides
 return {
   "hlchunk.nvim",
   for_cat = 'general.extra',
-  event = "UIEnter",
+  event = "DeferredUIEnter",
   after = function(plugin)
     local kanagawa_colors = require('kanagawa.colors').setup({ theme = 'wave' })
     if not kanagawa_colors then

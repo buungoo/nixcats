@@ -64,13 +64,14 @@ if nixCats('general.extra') then
 end
 
 require('lze').load {
-  { import = "plugins.lsp.telescope", },
   { import = "plugins.lsp.treesitter", },
   { import = "plugins.lsp.completion", },
   { import = "plugins.lsp.blink", },
   { import = "plugins.theme.kanagawa", },
   { import = "plugins.theme.hlchunk", },
   { import = "plugins.util.nvim-window", },
+  { import = "plugins.util.flash", },
+  { import = "plugins.util.snacks", },
   {
     "markdown-preview.nvim",
     -- NOTE: for_cat is a custom handler that just sets enabled value for us,
@@ -106,14 +107,6 @@ require('lze').load {
     event = "DeferredUIEnter",
     after = function(plugin)
       require('Comment').setup()
-    end,
-  },
-  {
-    "indent-blankline.nvim",
-    for_cat = 'general.extra',
-    event = "DeferredUIEnter",
-    after = function(plugin)
-      require("ibl").setup()
     end,
   },
   {

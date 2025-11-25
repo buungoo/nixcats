@@ -165,6 +165,8 @@
             nvim-web-devicons
             kanagawa-nvim
             hlchunk-nvim
+            flash-nvim
+            snacks-nvim
           ] ++ (with pkgs.neovimPlugins; [
             nvim-window
           ]);
@@ -236,11 +238,6 @@
             #   ]
             # ))
           ];
-          telescope = with pkgs.vimPlugins; [
-            telescope-fzf-native-nvim
-            telescope-ui-select-nvim
-            telescope-nvim
-          ];
           always = with pkgs.vimPlugins; [
             nvim-lspconfig
             gitsigns-nvim
@@ -255,7 +252,6 @@
             which-key-nvim
             comment-nvim
             undotree
-            indent-blankline-nvim
             vim-startuptime
             # If it was included in your flake inputs as plugins-hlargs,
             # this would be how to add that plugin in your config.
