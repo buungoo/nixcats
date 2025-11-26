@@ -63,6 +63,11 @@ if nixCats('general.extra') then
   vim.keymap.set("n", "<leader>-", "<cmd>Oil .<CR>", { noremap = true, desc = 'Open nvim root directory' })
 end
 
+-- Setup minuet-ai if enabled (it's a startup plugin, not lazy loaded via lze)
+if nixCats('ai') then
+  require("plugins.ai.minuet")
+end
+
 require('lze').load {
   { import = "plugins.lsp.treesitter", },
   { import = "plugins.lsp.completion", },

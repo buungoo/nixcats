@@ -19,8 +19,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+-- Keep cursor centered - large scrolloff keeps it in the middle
+vim.opt.scrolloff = 999 -- Always keep cursor centered vertically
 
 -- Make line numbers default
 vim.wo.number = true

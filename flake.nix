@@ -95,6 +95,13 @@
       # )
     ];
 
+    # Helper function to create llama.cpp model package
+    qwenModel = pkgs: pkgs.fetchurl {
+      url = "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/qwen2.5-coder-7b-instruct-q4_k_m.gguf";
+      sha256 = "sha256-UJKH94y01M9rOENzRzO5FLLBWOQ+Iqf0v16WOACJTTw=";
+      name = "qwen2.5-coder-7b-instruct-q4_k_m.gguf";
+    };
+
     # see :help nixCats.flake.outputs.categories
     # and
     # :help nixCats.flake.outputs.categoryDefinitions.scheme
@@ -114,6 +121,9 @@
           universal-ctags
           ripgrep
           fd
+        ];
+        ai = with pkgs; [
+          llama-cpp
         ];
         # these names are arbitrary.
         lint = with pkgs; [
@@ -147,6 +157,9 @@
 
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
+        ai = with pkgs.vimPlugins; [
+          minuet-ai-nvim
+        ];
         debug = with pkgs.vimPlugins; [
           nvim-nio
         ];
@@ -218,6 +231,8 @@
         ];
         neonixdev = with pkgs.vimPlugins; [
           lazydev-nvim
+        ];
+        ai = with pkgs.vimPlugins; [
         ];
         general = {
           blink = with pkgs.vimPlugins; [
@@ -345,18 +360,18 @@
     packageDefinitions = {
       # the name here is the name of the package
       # and also the default command name for it.
-      nixCats = { pkgs, name, ... }@misc: {
+      nvim = { pkgs, name, ... }@misc: {
         # these also recieve our pkgs variable
         # see :help nixCats.flake.outputs.packageDefinitions
         settings = {
           suffix-path = true;
           suffix-LD = true;
           # The name of the package, and the default launch name,
-          # and the name of the .desktop file, is `nixCats`,
+          # and the name of the .desktop file, is `nvim`,
           # or, whatever you named the package definition in the packageDefinitions set.
           # WARNING: MAKE SURE THESE DONT CONFLICT WITH OTHER INSTALLED PACKAGES ON YOUR PATH
           # That would result in a failed build, as nixos and home manager modules validate for collisions on your path
-          aliases = [ "vim" "vimcat" ];
+          aliases = [];
 
           # explained below in the `regularCats` package's definition
           # OR see :help nixCats.flake.outputs.settings for all of the settings available
@@ -459,9 +474,43 @@
           };
         };
       };
+
+      # AI-enabled package with Qwen-2.5-coder via llama.cpp
+      aivim = { pkgs, ... }@misc: {
+        settings = {
+          suffix-path = true;
+          suffix-LD = true;
+          wrapRc = true;
+          configDirName = "nixCats-nvim";
+          aliases = [];
+          hosts.python3.enable = true;
+          hosts.node.enable = true;
+        };
+        categories = {
+          markdown = true;
+          general = true;
+          lint = true;
+          format = true;
+          neonixdev = true;
+          rust = true;
+          ai = true;  # Enable AI completion
+          test = {
+            subtest1 = true;
+          };
+          lspDebugMode = false;
+          themer = true;
+          colorscheme = "kanagawa-wave";
+        };
+        extra = {
+          nixdExtras = {
+            nixpkgs = ''import ${pkgs.path} {}'';
+          };
+          qwenModelPath = qwenModel pkgs;
+        };
+      };
     };
 
-    defaultPackageName = "nixCats";
+    defaultPackageName = "nvim";
     # I did not here, but you might want to create a package named nvim.
 
     # defaultPackageName is also passed to utils.mkNixosModules and utils.mkHomeModules
