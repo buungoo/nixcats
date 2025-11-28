@@ -95,12 +95,21 @@
       # )
     ];
 
-    # Helper function to create llama.cpp model package
+    # Gguf model
     qwenModel = pkgs: pkgs.fetchurl {
       url = "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/qwen2.5-coder-7b-instruct-q4_k_m.gguf";
       sha256 = "sha256-UJKH94y01M9rOENzRzO5FLLBWOQ+Iqf0v16WOACJTTw=";
       name = "qwen2.5-coder-7b-instruct-q4_k_m.gguf";
     };
+
+    # Mlx model
+    # qwenModelMLX = pkgs: pkgs.fetchgit {
+    #   url = "https://huggingface.co/mlx-community/Qwen2.5-Coder-7B-Instruct-4bit";
+    #   rev = "refs/heads/main";
+    #   hash = "sha256-RxJuv+xUXvLbQ//EtnLTuS5qEbQH0FB9iXytj9nc3Bw=";
+    #   leaveDotGit = false;
+    #   fetchLFS = true;  # Required for HuggingFace model files stored in Git LFS
+    # };
 
     # see :help nixCats.flake.outputs.categories
     # and
@@ -125,6 +134,31 @@
         ai = with pkgs; [
           llama-cpp
         ];
+        # ai-mlx NOTE: too much problems with jit when trying to set up
+        # ai-mlx =
+        #   let
+        #     customPython = pkgs.python3.override {
+        #       packageOverrides = self: super: {
+        #         # Disable tests for problematic dependencies
+        #         accelerate = super.accelerate.overridePythonAttrs (old: {
+        #           doCheck = false;
+        #           doInstallCheck = false;
+        #         });
+        #         peft = super.peft.overridePythonAttrs (old: {
+        #           doCheck = false;
+        #           doInstallCheck = false;
+        #         });
+        #       };
+        #     };
+        #   in with pkgs; [
+        #     (customPython.withPackages (ps: with ps; [
+        #       mlx
+        #       mlx-lm
+        #       huggingface-hub
+        #     ]))
+        #     # MLX requires C++ compiler for JIT compilation at runtime
+        #     stdenv.cc
+        #   ];
         # these names are arbitrary.
         lint = with pkgs; [
         ];
@@ -158,6 +192,9 @@
       # This is for plugins that will load at startup without using packadd:
       startupPlugins = {
         ai = with pkgs.vimPlugins; [
+          minuet-ai-nvim
+        ];
+        ai-mlx = with pkgs.vimPlugins; [
           minuet-ai-nvim
         ];
         debug = with pkgs.vimPlugins; [
@@ -475,8 +512,8 @@
         };
       };
 
-      # AI-enabled package with Qwen-2.5-coder via llama.cpp
-      aivim = { pkgs, ... }@misc: {
+      # AI-enabled package with Qwen-2.5-coder via llama.cpp server
+      svim = { pkgs, ... }@misc: {
         settings = {
           suffix-path = true;
           suffix-LD = true;
@@ -508,6 +545,40 @@
           qwenModelPath = qwenModel pkgs;
         };
       };
+
+      # NOTE: problems with jit
+      # mvim = { pkgs, ... }@misc: {
+      #   settings = {
+      #     suffix-path = true;
+      #     suffix-LD = true;
+      #     wrapRc = true;
+      #     configDirName = "nixCats-nvim";
+      #     aliases = [];
+      #     hosts.python3.enable = true;
+      #     hosts.node.enable = true;
+      #   };
+      #   categories = {
+      #     markdown = true;
+      #     general = true;
+      #     lint = true;
+      #     format = true;
+      #     neonixdev = true;
+      #     rust = true;
+      #     ai-mlx = true;  # Enable MLX-based AI completion
+      #     test = {
+      #       subtest1 = true;
+      #     };
+      #     lspDebugMode = false;
+      #     themer = true;
+      #     colorscheme = "kanagawa-wave";
+      #   };
+      #   extra = {
+      #     nixdExtras = {
+      #       nixpkgs = ''import ${pkgs.path} {}'';
+      #     };
+      #     qwenModelMLX = qwenModelMLX pkgs;
+      #   };
+      # };
     };
 
     defaultPackageName = "nvim";

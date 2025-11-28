@@ -35,7 +35,7 @@ end
 -- Setup minuet
 require("minuet").setup({
   provider = "openai_fim_compatible",
-  n_completions = 3, -- Generate multiple suggestions
+  n_completions = 1, -- Generate multiple suggestions
   context_window = 2048, -- Larger context for better completions
   provider_options = {
     openai_fim_compatible = {

@@ -12,7 +12,7 @@ return {
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<C-c>"] = { "cancel", "fallback" },
-        ["<C-x><C-a>"] = nixCats("ai") and require('minuet').make_blink_map() or nil,
+        ["<C-x><C-a>"] = (nixCats("ai") or nixCats("ai-mlx")) and require('minuet').make_blink_map() or nil,
       },
 
       appearance = {
@@ -81,7 +81,7 @@ return {
       },
 
       sources = {
-        default = nixCats("ai") and { "minuet", "lsp", "path", "snippets", "buffer" }
+        default = (nixCats("ai") or nixCats("ai-mlx")) and { "minuet", "lsp", "path", "snippets", "buffer" }
           or { "lsp", "path", "snippets", "buffer" },
 
         per_filetype = {
@@ -99,11 +99,11 @@ return {
             score_offset = 100,
           },
 
-          minuet = nixCats("ai") and {
+          minuet = (nixCats("ai") or nixCats("ai-mlx")) and {
             name = "minuet",
             module = "minuet.blink",
             async = true,
-            timeout_ms = 3000,
+            timeout_ms = 200,
             score_offset = 100, -- High priority to appear at top
           } or nil,
         },

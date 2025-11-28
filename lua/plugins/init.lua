@@ -66,6 +66,8 @@ end
 -- Setup minuet-ai if enabled (it's a startup plugin, not lazy loaded via lze)
 if nixCats('ai') then
   require("plugins.ai.minuet")
+elseif nixCats('ai-mlx') then
+  require("plugins.ai.minuet-mlx")
 end
 
 require('lze').load {
