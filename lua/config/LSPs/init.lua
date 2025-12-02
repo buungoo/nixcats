@@ -29,13 +29,11 @@ require('lze').load {
     -- and it will run for all specs with type(plugin.lsp) == table
     -- when their filetype trigger loads them
     lsp = function(plugin)
-      vim.lsp.config(plugin.name, plugin.lsp or {})
-      vim.lsp.enable(plugin.name)
-    end,
-    before = function(_)
-      vim.lsp.config('*', {
+      local lsp_config = vim.tbl_deep_extend('force', plugin.lsp or {}, {
         on_attach = require('config.LSPs.on_attach'),
       })
+      vim.lsp.config(plugin.name, lsp_config)
+      vim.lsp.enable(plugin.name)
     end,
   },
   {

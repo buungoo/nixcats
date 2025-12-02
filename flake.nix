@@ -49,6 +49,10 @@
       flake = false;
     };
 
+    fff-nvim = {
+      url = "github:buungoo/fff.nvim";
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -86,6 +90,13 @@
       # use `pkgs.neovimPlugins`, which is a set of our plugins.
       (utils.standardPluginOverlay inputs)
       # add any other flake overlays here.
+
+      # fff.nvim overlay - use the built package from its flake
+      (final: prev: {
+        neovimPlugins = prev.neovimPlugins // {
+          fff-nvim = inputs.fff-nvim.packages.${final.system}.fff-nvim;
+        };
+      })
 
       # when other people mess up their overlays by wrapping them with system,
       # you may instead call this function on their overlay.
@@ -219,6 +230,7 @@
             snacks-nvim
           ] ++ (with pkgs.neovimPlugins; [
             nvim-window
+            fff-nvim
           ]);
         };
         # You can retreive information from the

@@ -37,7 +37,7 @@ return {
     { "<leader>s.", function() require('snacks').picker.recent() end, mode = {"n"}, desc = '[S]earch Recent Files ("." for repeat)', },
     { "<leader>sr", function() require('snacks').picker.resume() end, mode = {"n"}, desc = '[S]earch [R]esume', },
     { "<leader>sd", function() require('snacks').picker.diagnostics() end, mode = {"n"}, desc = '[S]earch [D]iagnostics', },
-    { "<leader>sg", function() require('snacks').picker.grep() end, mode = {"n"}, desc = '[S]earch by [G]rep', },
+    { "<leader>sg", function() require('snacks').picker.grep({ hidden = true, no_ignore = true }) end, mode = {"n"}, desc = '[S]earch by [G]rep', },
     { "<leader>sw", function() require('snacks').picker.grep_word() end, mode = {"n"}, desc = '[S]earch current [W]ord', },
     { "<leader>ss", function() require('snacks').picker.pickers() end, mode = {"n"}, desc = '[S]earch [S]elect Picker', },
     { "<leader>sf", function() require('snacks').picker.files() end, mode = {"n"}, desc = '[S]earch [F]iles', },
@@ -54,6 +54,15 @@ return {
         matcher = {
           fuzzy = true,
           smartcase = true,
+          ignorecase = true,
+        },
+        sources = {
+          grep = {
+            -- Enable fuzzy matching for grep content
+            matcher = {
+              fuzzy = true,
+            },
+          },
         },
         layout = {
           preset = "ivy_split",

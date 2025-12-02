@@ -79,6 +79,7 @@ require('lze').load {
   { import = "plugins.util.nvim-window", },
   { import = "plugins.util.flash", },
   { import = "plugins.util.snacks", },
+  -- { import = "plugins.util.fff", },
   {
     "markdown-preview.nvim",
     -- NOTE: for_cat is a custom handler that just sets enabled value for us,
