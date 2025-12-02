@@ -19,6 +19,9 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Exit terminal mode on ESC
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { desc = 'Exit terminal mode' })
 
+-- Exit insert mode with jj
+vim.keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
+
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
