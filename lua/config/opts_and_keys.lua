@@ -67,6 +67,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- stops line wrapping from being confusing
 vim.o.breakindent = true
 
+-- Disable line wrapping
+vim.o.wrap = false
+
 -- Save undo history
 vim.o.undofile = true
 

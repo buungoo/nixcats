@@ -12,6 +12,8 @@ return {
         ["<Tab>"] = { "select_next", "fallback" },
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<C-c>"] = { "cancel", "fallback" },
+        ["<C-k>"] = { "snippet_forward", "fallback" },
+        ["<C-j>"] = { "snippet_backward", "fallback" },
         ["<C-x><C-a>"] = (nixCats("ai") or nixCats("ai-mlx")) and require('minuet').make_blink_map() or nil,
       },
 

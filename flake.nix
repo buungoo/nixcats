@@ -309,6 +309,7 @@
             vim-fugitive
             vim-rhubarb
             nvim-surround
+            nvim-autopairs
           ];
           extra = with pkgs.vimPlugins; [
             fidget-nvim
