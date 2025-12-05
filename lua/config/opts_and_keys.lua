@@ -27,6 +27,7 @@ vim.opt.inccommand = 'split'
 
 -- Keep cursor centered - large scrolloff keeps it in the middle
 vim.opt.scrolloff = 999 -- Always keep cursor centered vertically
+vim.opt.sidescrolloff = 999 -- Always keep cursor centered vertically
 
 -- Make line numbers default
 vim.wo.number = true

@@ -13,7 +13,7 @@ return {
         ["<S-Tab>"] = { "select_prev", "fallback" },
         ["<C-c>"] = { "cancel", "fallback" },
         ["<C-k>"] = { "snippet_forward", "fallback" },
-        ["<C-j>"] = { "snippet_backward", "fallback" },
+        ["<C-j>"] = { "snippet_backward", "show_signature", "fallback" },
         ["<C-x><C-a>"] = (nixCats("ai") or nixCats("ai-mlx")) and require('minuet').make_blink_map() or nil,
       },
 
@@ -77,6 +77,9 @@ return {
 
       signature = {
         enabled = true,
+        trigger = {
+          show_on_insert_on_trigger_character = true,
+        },
         window = {
           border = "rounded",
         },
