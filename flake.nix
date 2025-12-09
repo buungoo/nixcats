@@ -49,6 +49,11 @@
       flake = false;
     };
 
+    plugins-krust-nvim = {
+      url = "github:alexpasmantier/krust.nvim";
+      flake = false;
+    };
+
     fff-nvim = {
       url = "github:buungoo/fff.nvim";
     };
@@ -257,6 +262,9 @@
       # to get the name packadd expects, use the
       # `:NixCats pawsible` command to see them all
       optionalPlugins = {
+        rust = with pkgs.neovimPlugins; [
+          krust-nvim
+        ];
         debug = with pkgs.vimPlugins; {
           # it is possible to add default values.
           # there is nothing special about the word "default"
@@ -494,6 +502,7 @@
           lint = true;
           format = true;
           test = true;
+          rust = true;
           # go = true; # <- disabled but you could enable it with override or module on install
           lspDebugMode = false;
           themer = true;

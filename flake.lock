@@ -101,6 +101,22 @@
         "type": "github"
       }
     },
+    "plugins-krust-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764874499,
+        "narHash": "sha256-aQIniMpOajX1FGV75LAs3CKe7VxoDB+Er1/C9T4t9fI=",
+        "owner": "alexpasmantier",
+        "repo": "krust.nvim",
+        "rev": "899b65851d25d6eb250833709ab5b27c760171dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alexpasmantier",
+        "repo": "krust.nvim",
+        "type": "github"
+      }
+    },
     "plugins-nvim-window": {
       "flake": false,
       "locked": {
@@ -122,6 +138,7 @@
         "fff-nvim": "fff-nvim",
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs_2",
+        "plugins-krust-nvim": "plugins-krust-nvim",
         "plugins-nvim-window": "plugins-nvim-window"
       }
     },

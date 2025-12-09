@@ -17,6 +17,7 @@ if ok then
   vim.notify = notify
   vim.keymap.set("n", "<Esc>", function()
       notify.dismiss({ silent = true, })
+      vim.cmd("nohlsearch")
   end, { desc = "dismiss notify popup and clear hlsearch" })
 end
 
@@ -74,6 +75,7 @@ require('lze').load {
   { import = "plugins.lsp.treesitter", },
   { import = "plugins.lsp.completion", },
   { import = "plugins.lsp.blink", },
+  { import = "plugins.lsp.krust", },
   { import = "plugins.theme.kanagawa", },
   { import = "plugins.theme.hlchunk", },
   { import = "plugins.util.nvim-window", },
