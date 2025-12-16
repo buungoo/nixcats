@@ -29,6 +29,7 @@ elseif nixCats('ai-mlx') then
 end
 
 require('lze').load {
+  { import = "plugins.lsp.lspconfig", },
   { import = "plugins.lsp.treesitter", },
   { import = "plugins.lsp.completion", },
   { import = "plugins.lsp.blink", },

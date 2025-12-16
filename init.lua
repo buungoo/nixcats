@@ -68,8 +68,6 @@ require("plugins")
 
 -- NOTE: obviously, more plugins, but more organized by what they do below
 
-require("config.LSPs")
-
 -- NOTE: we even ask nixCats if we included our debug stuff in this setup! (we didnt)
 -- But we have a good base setup here as an example anyway!
 if nixCats('debug') then

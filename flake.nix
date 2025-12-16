@@ -187,7 +187,7 @@
         ];
         neonixdev = {
           # also you can do this.
-          inherit (pkgs) nix-doc lua-language-server nixd;
+          inherit (pkgs) nix-doc lua-language-server nixd nixfmt-rfc-style;
           # and each will be its own sub category
         };
       };
