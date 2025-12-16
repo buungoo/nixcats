@@ -35,15 +35,6 @@
     # for specific tags, branches and commits, see:
     # https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake.html#examples
 
-    # No longer fetched to avoid forcing people to import it, but this remains here as a tutorial.
-    # How to import it into your config is shown farther down in the startupPlugins set.
-    # You put it here like this, and then below you would use it with `pkgs.neovimPlugins.hlargs`
-
-    # "plugins-hlargs" = {
-    #   url = "github:m-demare/hlargs.nvim";
-    #   flake = false;
-    # };
-
     plugins-nvim-window = {
       url = "gitlab:yorickpeterse/nvim-window";
       flake = false;
@@ -52,10 +43,6 @@
     plugins-krust-nvim = {
       url = "github:alexpasmantier/krust.nvim";
       flake = false;
-    };
-
-    fff-nvim = {
-      url = "github:buungoo/fff.nvim";
     };
 
     # neovim-nightly-overlay = {
@@ -97,11 +84,11 @@
       # add any other flake overlays here.
 
       # fff.nvim overlay - use the built package from its flake
-      (final: prev: {
-        neovimPlugins = prev.neovimPlugins // {
-          fff-nvim = inputs.fff-nvim.packages.${final.system}.fff-nvim;
-        };
-      })
+      # (final: prev: {
+      #   neovimPlugins = prev.neovimPlugins // {
+      #     fff-nvim = inputs.fff-nvim.packages.${final.system}.fff-nvim;
+      #   };
+      # })
 
       # when other people mess up their overlays by wrapping them with system,
       # you may instead call this function on their overlay.
@@ -227,7 +214,7 @@
             (nvim-notify.overrideAttrs { doCheck = false; }) # TODO: remove overrideAttrs after check is fixed
           ];
           extra = [
-            oil-nvim
+            # oil-nvim
             nvim-web-devicons
             kanagawa-nvim
             hlchunk-nvim
@@ -235,7 +222,7 @@
             snacks-nvim
           ] ++ (with pkgs.neovimPlugins; [
             nvim-window
-            fff-nvim
+            # fff-nvim
           ]);
         };
         # You can retreive information from the
@@ -322,6 +309,7 @@
           extra = with pkgs.vimPlugins; [
             fidget-nvim
             # lualine-lsp-progress
+            oil-nvim
             which-key-nvim
             comment-nvim
             undotree
@@ -604,19 +592,6 @@
     };
 
     defaultPackageName = "nvim";
-    # I did not here, but you might want to create a package named nvim.
-
-    # defaultPackageName is also passed to utils.mkNixosModules and utils.mkHomeModules
-    # and it controls the name of the top level option set.
-    # If you made a package named `nixCats` your default package as we did here,
-    # the modules generated would be set at:
-    # config.nixCats = {
-    #   enable = true;
-    #   packageNames = [ "nixCats" ]; # <- the packages you want installed
-    #   <see :h nixCats.module for options>
-    # }
-    # In addition, every package exports its own module via passthru, and is overrideable.
-    # so you can yourpackage.homeModule and then the namespace would be that packages name.
   in
   # you shouldnt need to change much past here, but you can if you wish.
   # but you should at least eventually try to figure out whats going on here!
