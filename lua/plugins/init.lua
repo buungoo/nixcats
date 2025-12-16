@@ -28,7 +28,12 @@ elseif nixCats('ai-mlx') then
   require("plugins.ai.minuet-mlx")
 end
 
+-- Setup line number change mode (needs to load after kanagawa)
+require("plugins.theme.line-number-change-mode").load()
+
 require('lze').load {
+  { import = "plugins.lsp.conform", },
+  { import = "plugins.lsp.nvim-lint", },
   { import = "plugins.lsp.lspconfig", },
   { import = "plugins.lsp.treesitter", },
   { import = "plugins.lsp.completion", },
@@ -49,6 +54,8 @@ require('lze').load {
   { import = "plugins.util.startuptime", },
   { import = "plugins.util.fidget", },
   { import = "plugins.util.gitsigns", },
+  { import = "plugins.theme.satellite", },
+  { import = "plugins.util.nvim-highlight-colors", },
   { import = "plugins.util.which-key", },
   -- { import = "plugins.util.fff", },
 }

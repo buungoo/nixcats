@@ -45,6 +45,16 @@
       flake = false;
     };
 
+    plugins-line-number-change-mode = {
+      url = "github:sethen/line-number-change-mode.nvim";
+      flake = false;
+    };
+
+    plugins-nvim-highlight-colors = {
+      url = "github:brenoprata10/nvim-highlight-colors";
+      flake = false;
+    };
+
     # neovim-nightly-overlay = {
     #   url = "github:nix-community/neovim-nightly-overlay";
     # };
@@ -207,6 +217,7 @@
               nix-doc
               nixd
               nixfmt-rfc-style
+              nixpkgs-lint
             ];
           };
 
@@ -241,6 +252,7 @@
               ]
               ++ (with pkgs.neovimPlugins; [
                 nvim-window
+                line-number-change-mode
                 # fff-nvim
               ]);
             };
@@ -330,6 +342,7 @@
                 # lualine-lsp-progress
                 oil-nvim
                 mini-nvim
+                satellite-nvim
                 which-key-nvim
                 comment-nvim
                 undotree
@@ -337,7 +350,9 @@
                 # If it was included in your flake inputs as plugins-hlargs,
                 # this would be how to add that plugin in your config.
                 # pkgs.neovimPlugins.hlargs
-              ];
+              ] ++ (with pkgs.neovimPlugins; [
+                nvim-highlight-colors
+              ]);
             };
           };
 

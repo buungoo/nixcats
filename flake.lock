@@ -47,6 +47,38 @@
         "type": "github"
       }
     },
+    "plugins-line-number-change-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1729012619,
+        "narHash": "sha256-5oesT8HB+N4AWfXt9+l/5nrxlhCoEgfcUKk4Jm2U8Fk=",
+        "owner": "sethen",
+        "repo": "line-number-change-mode.nvim",
+        "rev": "0237ad6bd85c5872df66e2e98d7bba27c906382e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sethen",
+        "repo": "line-number-change-mode.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-nvim-highlight-colors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1757168372,
+        "narHash": "sha256-BIcOU2Gie90wujQFZ+aD3wYTRegSKw4CBxC95DRwo9I=",
+        "owner": "brenoprata10",
+        "repo": "nvim-highlight-colors",
+        "rev": "e0c4a58ec8c3ca7c92d3ee4eb3bc1dd0f7be317e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "brenoprata10",
+        "repo": "nvim-highlight-colors",
+        "type": "github"
+      }
+    },
     "plugins-nvim-window": {
       "flake": false,
       "locked": {
@@ -68,6 +100,8 @@
         "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "plugins-krust-nvim": "plugins-krust-nvim",
+        "plugins-line-number-change-mode": "plugins-line-number-change-mode",
+        "plugins-nvim-highlight-colors": "plugins-nvim-highlight-colors",
         "plugins-nvim-window": "plugins-nvim-window"
       }
     }
