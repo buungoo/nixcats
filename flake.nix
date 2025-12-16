@@ -310,6 +310,7 @@
             fidget-nvim
             # lualine-lsp-progress
             oil-nvim
+            mini-nvim
             which-key-nvim
             comment-nvim
             undotree
