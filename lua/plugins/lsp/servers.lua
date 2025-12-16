@@ -4,7 +4,7 @@ return {
   {
     -- Lua Language Server
     "lua_ls",
-    enabled = nixCats('lua') or nixCats('neonixdev') or false,
+    enabled = nixCats('lua'),
     lsp = {
       filetypes = { 'lua' },
       settings = {
@@ -68,7 +68,7 @@ return {
   {
     -- Nix Language Server (nixd) - for NixOS systems
     "nixd",
-    enabled = catUtils.isNixCats and (nixCats('nix') or nixCats('neonixdev')) or false,
+    enabled = catUtils.isNixCats and nixCats('nix'),
     lsp = {
       filetypes = { "nix" },
       settings = {

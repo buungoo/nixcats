@@ -22,12 +22,12 @@ M.for_cat = {
     modify = function(plugin)
         if type(plugin.for_cat) == "table" and plugin.for_cat.cat ~= nil then
             if vim.g[ [[nixCats-special-rtp-entry-nixCats]] ] ~= nil then
-                plugin.enabled = nixCats(plugin.for_cat.cat) or false
+                plugin.enabled = nixCats(plugin.for_cat.cat)
             else
                 plugin.enabled = plugin.for_cat.default
             end
         else
-            plugin.enabled = nixCats(plugin.for_cat) or false
+            plugin.enabled = nixCats(plugin.for_cat)
         end
         return plugin
     end,

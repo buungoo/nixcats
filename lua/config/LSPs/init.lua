@@ -66,7 +66,7 @@ require('lze').load {
   {
     -- name of the lsp
     "lua_ls",
-    enabled = nixCats('lua') or nixCats('neonixdev') or false,
+    enabled = nixCats('lua') or nixCats('neonixdev'),
     -- provide a table containing filetypes,
     -- and then whatever your functions defined in the function type specs expect.
     -- in our case, it just expects the normal lspconfig setup options,
@@ -134,7 +134,7 @@ require('lze').load {
   },
   {
     "nixd",
-    enabled = catUtils.isNixCats and (nixCats('nix') or nixCats('neonixdev')) or false,
+    enabled = catUtils.isNixCats and (nixCats('nix') or nixCats('neonixdev')),
     lsp = {
       filetypes = { "nix" },
       settings = {

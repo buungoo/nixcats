@@ -53,7 +53,7 @@ return {
   {
     -- lazydev makes your lsp way better in your config without needing extra lsp configuration.
     "lazydev.nvim",
-    for_cat = "neonixdev",
+    for_cat = "lua",
     cmd = { "LazyDev" },
     ft = "lua",
     after = function(_)

@@ -185,11 +185,19 @@
         # and easily check if they are included in lua
         format = with pkgs; [
         ];
-        neonixdev = {
-          # also you can do this.
-          inherit (pkgs) nix-doc lua-language-server nixd nixfmt-rfc-style;
-          # and each will be its own sub category
-        };
+        lua = with pkgs; [
+          lua-language-server
+        ];
+        nix = with pkgs; [
+          nix-doc
+          nixd
+          nixfmt-rfc-style
+        ];
+        # neonixdev = {
+        #   # also you can do this.
+        #   inherit (pkgs) ;
+        #   # and each will be its own sub category
+        # };
       };
 
       # This is for plugins that will load at startup without using packadd:
@@ -273,7 +281,10 @@
         markdown = with pkgs.vimPlugins; [
           markdown-preview-nvim
         ];
-        neonixdev = with pkgs.vimPlugins; [
+        # neonixdev = with pkgs.vimPlugins; [
+        #   lazydev-nvim
+        # ];
+        lua = with pkgs.vimPlugins; [
           lazydev-nvim
         ];
         ai = with pkgs.vimPlugins; [
@@ -434,7 +445,9 @@
           general = true;
           lint = true;
           format = true;
-          neonixdev = true;
+          # neonixdev = true;
+          nix = true;
+          lua = true;
           rust = true;
           test = {
             subtest1 = true;
@@ -487,7 +500,7 @@
         categories = {
           markdown = true;
           general = true;
-          neonixdev = true;
+          # neonixdev = true;
           lint = true;
           format = true;
           test = true;
@@ -539,7 +552,7 @@
           general = true;
           lint = true;
           format = true;
-          neonixdev = true;
+          # neonixdev = true;
           rust = true;
           ai = true;  # Enable AI completion
           test = {
