@@ -51,7 +51,7 @@ vim.o.mouse = 'a'
 -- Indent
 -- vim.o.smarttab = true
 vim.opt.cpoptions:append('I')
-vim.o.expandtab = true
+vim.o.expandtab = true  -- Converts tabs into spaces on [i]tab
 -- vim.o.smartindent = true
 -- vim.o.autoindent = true
 vim.o.tabstop = 3

@@ -344,6 +344,7 @@
                 mini-nvim
                 satellite-nvim
                 which-key-nvim
+                vscode-diff-nvim
                 comment-nvim
                 undotree
                 vim-startuptime

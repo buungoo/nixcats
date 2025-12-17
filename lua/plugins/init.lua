@@ -33,6 +33,7 @@ require("plugins.theme.line-number-change-mode").load()
 
 require('lze').load {
   { import = "plugins.lsp.conform", },
+  { import = "plugins.util.vscode-diff", },
   { import = "plugins.lsp.nvim-lint", },
   { import = "plugins.lsp.lspconfig", },
   { import = "plugins.lsp.treesitter", },

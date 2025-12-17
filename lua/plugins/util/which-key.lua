@@ -26,8 +26,8 @@ return {
       { "<leader>s_", hidden = true },
       { "<leader>t", group = "[t]oggles" },
       { "<leader>t_", hidden = true },
-      { "<leader>w", group = "[w]orkspace" },
-      { "<leader>w_", hidden = true },
+      -- { "<leader>w", group = "[w]orkspace" },
+      -- { "<leader>w_", hidden = true },
     }
   end,
 }
