@@ -219,6 +219,9 @@
               nixfmt-rfc-style
               nixpkgs-lint
             ];
+            c = with pkgs; [
+              clang-tools # includes clangd (LSP) and clang-format (formatter)
+            ];
           };
 
           # This is for plugins that will load at startup without using packadd:
@@ -481,6 +484,7 @@
               nix = true;
               lua = true;
               rust = true;
+              c = true;
               test = {
                 subtest1 = true;
               };
@@ -540,6 +544,7 @@
               format = true;
               test = true;
               rust = true;
+              c = true;
               # go = true; # <- disabled but you could enable it with override or module on install
               lspDebugMode = false;
               themer = true;
@@ -598,6 +603,7 @@
               nix = true;
               lua = true;
               rust = true;
+              c = true;
               ai = true; # Enable AI completion
               test = {
                 subtest1 = true;

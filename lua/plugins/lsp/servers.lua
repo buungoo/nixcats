@@ -50,6 +50,22 @@ return {
     },
   },
   {
+    -- C/C++ Language Server
+    "clangd",
+    for_cat = "c",
+    lsp = {
+      filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
+      cmd = {
+        "clangd",
+        "--background-index",
+        "--clang-tidy",
+        "--header-insertion=iwyu",
+        "--completion-style=detailed",
+        "--function-arg-placeholders=true",
+      },
+    },
+  },
+  {
     -- Nix Language Server (rnix) - for non-NixOS systems
     "rnix",
     enabled = not catUtils.isNixCats,
