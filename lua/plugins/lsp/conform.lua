@@ -20,6 +20,7 @@ return {
         -- javascript = { { "prettierd", "prettier" } },
         c = { "clang-format" },
         cpp = { "clang-format" },
+        java = { "google-java-format" },
       },
     })
 

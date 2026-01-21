@@ -222,6 +222,10 @@
             c = with pkgs; [
               clang-tools # includes clangd (LSP) and clang-format (formatter)
             ];
+            java = with pkgs; [
+              jdt-language-server
+              google-java-format
+            ];
           };
 
           # This is for plugins that will load at startup without using packadd:
@@ -485,6 +489,7 @@
               lua = true;
               rust = true;
               c = true;
+              java = true;
               test = {
                 subtest1 = true;
               };
@@ -545,6 +550,7 @@
               test = true;
               rust = true;
               c = true;
+              java = true;
               # go = true; # <- disabled but you could enable it with override or module on install
               lspDebugMode = false;
               themer = true;
@@ -604,6 +610,7 @@
               lua = true;
               rust = true;
               c = true;
+              java = true;
               ai = true; # Enable AI completion
               test = {
                 subtest1 = true;

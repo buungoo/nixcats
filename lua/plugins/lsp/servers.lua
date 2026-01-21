@@ -66,6 +66,14 @@ return {
     },
   },
   {
+    -- Java Language Server
+    "jdtls",
+    for_cat = "java",
+    lsp = {
+      filetypes = { "java" },
+    },
+  },
+  {
     -- Nix Language Server (rnix) - for non-NixOS systems
     "rnix",
     enabled = not catUtils.isNixCats,
