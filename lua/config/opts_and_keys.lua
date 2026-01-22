@@ -60,7 +60,7 @@ vim.o.shiftwidth = 3
 
 -- Language-specific indentation
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "nix", "lua" },
+  pattern = { "nix", "lua", "java" },
   callback = function()
     vim.bo.tabstop = 2
     vim.bo.softtabstop = 2
@@ -94,6 +94,9 @@ vim.o.completeopt = 'menu,preview,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Use conform.nvim for gq formatting (e.g., gqip, gq3j)
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 -- [[ Disable auto comment on enter ]]
 -- See :help formatoptions

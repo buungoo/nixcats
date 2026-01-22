@@ -57,11 +57,17 @@ return {
           ignorecase = true,
         },
         sources = {
+          files = {
+            hidden = true,
+            ignored = false,
+            exclude = { "*.class" },
+          },
           grep = {
             -- Enable fuzzy matching for grep content
             matcher = {
               fuzzy = true,
             },
+            exclude = { "*.class" },
           },
         },
         layout = {
